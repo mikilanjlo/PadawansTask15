@@ -18,8 +18,22 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<string> GetUppercaseStrings(IEnumerable<string> data)
         {
-            // TODO : Implement GetUppercaseStrings
-            throw new NotImplementedException();
+            if (data == null)
+                throw new ArgumentNullException();
+            foreach (string letter in data)
+            {
+                string result;
+                try
+                {
+                    result = letter.ToUpper();
+                }
+                catch(Exception ex)
+                {
+                    result = letter;
+                }
+                yield return result;
+            }
+            
         }
 
         /// <summary> Transforms an each string from sequence to its length.</summary>
@@ -34,8 +48,21 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<int> GetStringsLength(IEnumerable<string> data)
         {
-            // TODO : Implement GetStringsLength
-            throw new NotImplementedException();
+            if (data == null)
+                throw new ArgumentNullException();
+            foreach (string letter in data)
+            {
+                int result;
+                try
+                {
+                    result = letter.Length;
+                }
+                catch (Exception ex)
+                {
+                    result = 0;
+                }
+                yield return result;
+            }
         }
 
         /// <summary>Transforms integer sequence to its square sequence, f(x) = x * x. </summary>
@@ -50,8 +77,13 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<long> GetSquareSequence(IEnumerable<int> data)
         {
-            // TODO : Implement GetSquareSequence
-            throw new NotImplementedException();
+            if (data == null)
+                throw new ArgumentNullException();
+            foreach (int number in data)
+            {
+                
+                yield return number * number;
+            }
         }
 
         /// <summary> Filters a string sequence by a prefix value (case insensitive).</summary>
@@ -71,8 +103,20 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<string> GetPrefixItems(IEnumerable<string> data, string prefix)
         {
-            // TODO : Implement GetPrefixItems
-            throw new NotImplementedException();
+            if (data == null)
+                throw new ArgumentNullException();
+            if (prefix == null)
+                throw new ArgumentNullException();
+            foreach (string row in data) {
+                if (prefix == "")
+                    yield return row;
+                else
+                {
+                    if (row.ToUpper().StartsWith(prefix.ToUpper()))
+                        yield return row;
+                }
+            }
+
         }
 
         /// <summary> Finds the 3 largest numbers from a sequence.</summary>
@@ -89,8 +133,22 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<int> Get3LargestItems(IEnumerable<int> data)
         {
-            // TODO : Implement Get3LargestItems
-            throw new NotImplementedException();
+            if (data == null)
+                throw new ArgumentNullException();
+            List<int> list = new List<int>();
+            foreach (int number in data)
+                list.Add(number);
+            list.Sort();
+            List<int> list2 = new List<int>();
+            int i = list.Count;
+            int itemsCount = 0;
+            while(i > 0 && itemsCount < 3)
+            {
+                list2.Add(list[i - 1] );
+                i--;
+                itemsCount++;
+            }
+            return list2.ToArray();
         }
 
         /// <summary> Calculates sum of all integers from object array.</summary>
@@ -106,8 +164,13 @@ namespace PadawansTask15
         /// </example>
         public int GetSumOfAllIntegers(object[] data)
         {
-            // TODO : Implement GetSumOfAllIntegers
-            throw new NotImplementedException();
+            if (data == null)
+               throw new ArgumentNullException();
+            int sum = 0;
+            for (int i = 0; i < data.Length; i++ )
+                if (data[i] is int)
+                    sum +=(int)data[i];
+            return sum;
         }
     }
 }
