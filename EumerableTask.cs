@@ -79,7 +79,7 @@ namespace PadawansTask15
         {
             if (data == null)
                 throw new ArgumentNullException();
-            foreach (int number in data)
+            foreach (long number in data)
             {
                 
                 yield return number * number;
@@ -107,14 +107,19 @@ namespace PadawansTask15
                 throw new ArgumentNullException();
             if (prefix == null)
                 throw new ArgumentNullException();
-            foreach (string row in data) {
-                if (prefix == "")
-                    yield return row;
-                else
-                {
-                    if (row.ToUpper().StartsWith(prefix.ToUpper()))
-                        yield return row;
-                }
+            foreach (string row in data)
+            {
+                if(row != null)
+                    if (prefix == "")
+                    {
+                        if (row != null)
+                            yield return row;
+                    }
+                    else
+                    {
+                        if (row.ToUpper().StartsWith(prefix.ToUpper()))
+                            yield return row;
+                    }
             }
 
         }

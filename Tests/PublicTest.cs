@@ -85,6 +85,11 @@ namespace PadawansTask15.Tests
                         "Method should return squares of source sequence."
                     );
                 }
+                yield return new TestCaseData(
+                        new int[] { 65536, 65537, int.MaxValue },
+                        new long[] { 4294967296L, 4295098369L, 4611686014132420609L },
+                        "Method should return squares of source sequence."
+                    );
             }
         }
 
@@ -107,6 +112,10 @@ namespace PadawansTask15.Tests
                 {
                     yield return new TestCaseData("A horse, a kingdom for a horse!".Split(' '),
                         "horse",
+                        new string[] { "horse,", "horse!" },
+                        "Method should return items started with required prefix.");
+                    yield return new TestCaseData("A horse, a kingdom for a horse!".Split(' '),
+                        "HOR",
                         new string[] { "horse,", "horse!" },
                         "Method should return items started with required prefix.");
                     yield return new TestCaseData("A horse, a kingdom for a horse!".Split(' '),
